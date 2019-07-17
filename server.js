@@ -1,9 +1,11 @@
 const express = require('express')
 const socketIo = require('socket.io')
 const http = require('http')
+const cors = require('cors')
 
 const port = 9000
 const app = express()
+app.use(cors())
 
 const server = http.createServer(app)
 
