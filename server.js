@@ -2,10 +2,11 @@ const express = require('express')
 const socketIo = require('socket.io')
 const http = require('http')
 const cors = require('cors')
-
+const https = require('https')
 const port = 9000
 const app = express()
 app.use(cors())
+
 
 const server = http.createServer(app)
 
@@ -27,12 +28,17 @@ const fakeData = [
 ]
 
 app.get('/', (req, res) => {
+    io.emit('event', fakeData)
     res.json(fakeData)
 })
 
 io.on('connection', socket => {
-    socket.on('event', (data) => {
-        socket.emit('event', fakeData)
+    console.log("someone is connected");
+    
+    io.on('event', (data) => {
+        console.log("action launched");
+        
+        io.emit('event', fakeData)
     })
 })
 
