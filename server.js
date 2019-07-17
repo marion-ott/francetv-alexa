@@ -28,18 +28,22 @@ const fakeData = [
 ]
 
 app.get('/', (req, res) => {
-    io.emit('event', fakeData)
-    res.json(fakeData)
+    const data = {
+        state: 'home',
+        speech: 'Bienvenue sur Streamer'
+    }
+    io.emit('event', data)
+    res.json(data)
 })
 
 io.on('connection', socket => {
     console.log("someone is connected");
     
-    io.on('event', (data) => {
-        console.log("action launched");
+    // io.on('event', (data) => {
+    //     console.log("action launched");
         
-        io.emit('event', fakeData)
-    })
+    //     io.emit('event', fakeData)
+    // })
 })
 
 
