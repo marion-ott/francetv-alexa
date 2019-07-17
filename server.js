@@ -12,25 +12,11 @@ const server = http.createServer(app)
 
 const io = socketIo(server)
 
-const fakeData = [
-    {
-        streamer: "Bob", 
-        event: "100M"
-    },
-    {
-        streamer: "Bill", 
-        event: "200M"
-    },
-    {
-        streamer: "Boris", 
-        event: "500M"
-    }
-]
 
 app.get('/', (req, res) => {
     const data = {
         state: 'home',
-        speech: 'Bienvenue sur Streamer'
+        speech: 'Cette application vous permet de rejoindre un live sportif commenté par un tiers ou de vous glisser vous-même dans la peau d\'un commentateur.'
     }
     io.emit('event', data)
     res.json(data)
