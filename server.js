@@ -29,9 +29,8 @@ app.get('/', (req, res) => {
 })
 
 io.on('connection', socket => {
-    console.log('somebody is connected');
     socket.on('event', (data) => {
-        socket.emit('event', fakeData[0].streamer)
+        socket.emit('event', fakeData)
     })
 })
 
