@@ -68,11 +68,11 @@ app.get('/stream/:id', (req, res) => {
 
 
 app.get('/media/:streamer', (req, res) => {
-    const id = req.params.id
+    const name = req.params.streamer
     const data = {
         state: 'streamList',
         data: 'video.mp4',
-        speech: `Voici le stream de ${req.params.id}`
+        speech: `Voici le stream de ${name}`
     }
     io.emit('event', data)
     res.json(data)
