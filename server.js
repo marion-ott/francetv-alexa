@@ -92,7 +92,7 @@ app.get('/stream/:id', (req, res) => {
 
 app.get('/media/actions/:action', (req, res) => {
     const name = req.params.action
-    let state = 'video'
+    let state = 'action'
     if (name === 'repars' || name === 'continue' || name === 'remets' || name === 'reprends' || name === 'joue' || name === 'jouer' || name === 'play') {
         action = 'play'
     } else if (name === 'arrête' || name === 'pause') {
