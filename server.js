@@ -94,19 +94,20 @@ app.get('/media/actions/:action', (req, res) => {
     const name = req.params.action
     let state = 'video'
     if (name === 'repars' || name === 'continue' || name === 'remets' || name === 'reprends' || name === 'joue' || name === 'jouer' || name === 'play') {
-        state = 'play'
+        action = 'play'
     } else if (name === 'arrête' || name === 'pause') {
-        state = 'pause'
+        action = 'pause'
     } else if (name === 'stop') {
-        state = 'stop'
+        action = 'stop'
     } else {
-        state = 'error'
+        action = 'error'
     }
+    
     const data = {
         state,
-        action: state,
+        action: action,
         data: name,
-        speech: state.charAt(0).toUpperCase() + state.substr(1) + '.'
+        speech: ''
     }
     io.emit('event', data)
     res.json(data)
