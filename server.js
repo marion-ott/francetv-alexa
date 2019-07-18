@@ -22,37 +22,60 @@ app.get('/', (req, res) => {
     res.json(data)
 })
 
-
 const streamList = [
     [
         {
-            name: 'Bill',
-            image: 'image.jpg'
+            name: 'Luciole',
+            src: 'assets/img/luciole.jpg',
+            online: true
         },
         {
-            name: 'Bob',
-            image: 'image.jpg'
+            name: 'Cyprien',
+            src: 'assets/img/cyprien.jpg',
+            online: true
         },
         {
-            name: 'Gérard',
-            image: 'image.jpg'
+            name: 'Norman',
+            src: 'assets/img/norman.png',
+            online: true
         }
     ],
     [
         {
-            name: 'Paule',
-            image: 'image.jpg'
+            name: 'Cyprien',
+            src: 'assets/img/cyprien.jpg',
+            online: true
         },
         {
-            name: 'Hélène',
-            image: 'image.jpg'
+            name: 'Luciole',
+            src: 'assets/img/luciole.jpg',
+            online: true
         },
         {
-            name: 'Marion',
-            image: 'image.jpg'
+            name: 'Norman',
+            src: 'assets/img/norman.png',
+            online: true
+        }
+    ],
+    [
+        {
+            name: 'Norman',
+            src: 'assets/img/norman.png',
+            online: true
+        },
+        {
+            name: 'Cyprien',
+            src: 'assets/img/cyprien.jpg',
+            online: true
+        },
+        {
+            name: 'Luciole',
+            src: 'assets/img/luciole.jpg',
+            online: true
         }
     ]
 ]
+
 
 
 app.get('/stream/:id', (req, res) => {
@@ -72,7 +95,7 @@ app.get('/media/:streamer', (req, res) => {
     const data = {
         state: 'streamList',
         data: 'video.mp4',
-        speech: `Voici le stream de ${name}`
+        speech: `Entendu. Voici le stream de ${name}`
     }
     io.emit('event', data)
     res.json(data)
