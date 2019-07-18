@@ -84,7 +84,7 @@ app.get('/stream/:id', (req, res) => {
             streamers: streamList[id],
             id
         },
-        speech: `Choisis un streamer parmi : ${streamList[id][0].name}, ${streamList[id][1].name}, ou ${streamList[id][2].name}`
+        speech: `Choisissez un streamer parmi : ${streamList[id][0].name}, ${streamList[id][1].name}, ou ${streamList[id][2].name}`
     }
     io.emit('event', data)
     res.json(data)
@@ -92,7 +92,7 @@ app.get('/stream/:id', (req, res) => {
 
 app.get('/media/actions/:action', (req, res) => {
     const name = req.params.action
-    let state = ''
+    let state = 'video'
     if (name === 'repars' || name === 'continue' || name === 'remets' || name === 'reprends' || name === 'joue' || name === 'jouer' || name === 'play') {
         state = 'play'
     } else if (name === 'arrête' || name === 'pause') {
@@ -104,6 +104,7 @@ app.get('/media/actions/:action', (req, res) => {
     }
     const data = {
         state,
+        action: state,
         data: name,
         speech: state.charAt(0).toUpperCase() + state.substr(1) + '.'
     }
@@ -115,7 +116,11 @@ app.get('/media/:streamer', (req, res) => {
     const name = req.params.streamer
     const data = {
         state: 'video',
-        data: 'video.mp4',
+        data: {
+            name: name,
+            src: `${name}.png`,
+            action: 'play'
+        },
         speech: `Entendu. Voici le stream de ${name}`
     }
     io.emit('event', data)
@@ -137,9 +142,7 @@ app.get('/media/:streamer/:action', (req, res) => {
 
 app.get('/search/:streamer', (req, res) => {
     const name = req.params.streamer
-    let result = streamList.find(obj => {
-        return obj.name.toLowerCase() === name.toLowerCase()
-    })
+    
 
     if(result.online) {
         console.log(result);
@@ -147,7 +150,10 @@ app.get('/search/:streamer', (req, res) => {
     
     const data = {
         state: 'video',
-        data: 'video.mp4',
+        data: {
+            name: name,
+            src: `${name}.png`,
+        },
         speech: `Entendu. Voici le stream de ${name}`
     }
     io.emit('event', data)
