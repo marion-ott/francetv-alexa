@@ -89,6 +89,26 @@ app.get('/stream/:id', (req, res) => {
     res.json(data)
 })
 
+app.get('/media/actions/:action', (req, res) => {
+    const name = req.params.action
+    let state = ''
+    if (name === 'repars' || name === 'continue' || name === 'remets' || name === 'reprends' || name === 'joue' || name === 'jouer' || name === 'play') {
+        state = 'play'
+    } else if (name === 'arrête' || name === 'pause') {
+        state = 'pause'
+    } else if (name === 'stop') {
+        state = 'stop'
+    } else {
+        state = 'error'
+    }
+    const data = {
+        state,
+        data: name,
+        speech: state.charAt(0).toUpperCase() + state.substr(1) + '.'
+    }
+    io.emit('event', data)
+    res.json(data)
+})
 
 app.get('/media/:streamer', (req, res) => {
     const name = req.params.streamer
