@@ -76,13 +76,10 @@ const streamList = [
     ]
 ]
 
-
-
-app.get('/stream/:id', (req, res) => {
-    const id = req.params.id
+app.get('/stream', (req, res) => {
     const data = {
         state: 'streamList',
-        data: streamList[id],
+        data: streamList,
         speech: `Choisis un streamer parmi : ${streamList[id][0].name}, ${streamList[id][1].name}, ou ${streamList[id][2].name}`
     }
     io.emit('event', data)
