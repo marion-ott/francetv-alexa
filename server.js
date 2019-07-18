@@ -15,7 +15,7 @@ const io = socketIo(server)
 
 app.get('/', (req, res) => {
     const data = {
-        state: 'home',
+        state: 'loader',
         speech: 'Cette application vous permet de rejoindre un live sportif commenté par un tiers, ou de vous glisser vous-même dans la peau d\'un commentateur.'
     }
     io.emit('event', data)
@@ -79,7 +79,7 @@ const streamList = [
 app.get('/stream/:id', (req, res) => {
     const id = req.params.id
     const data = {
-        state: 'streamList',
+        state: 'home',
         data: streamList[id],
         speech: `Choisis un streamer parmi : ${streamList[id][0].name}, ${streamList[id][1].name}, ou ${streamList[id][2].name}`
     }
