@@ -11,9 +11,10 @@ app.use(cors())
 const server = http.createServer(app)
 
 const io = socketIo(server)
-
+let id = 0
 
 app.get('/', (req, res) => {
+    id = 0
     const data = {
         state: 'loader',
         speech: 'l\'application qui vous permet de rejoindre un live sportif commenté par un tiers, ou de devenir vous-même commentateur. Que souhaitez-vous faire ?'
@@ -76,7 +77,7 @@ const streamList = [
     ]
 ]
 
-let id = 0
+
 app.get('/stream', (req, res) => {
     const data = {
         state: 'home',
