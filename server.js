@@ -12,9 +12,11 @@ const server = http.createServer(app)
 
 const io = socketIo(server)
 let id = 0
+let firstConnect = true
 
 app.get('/', (req, res) => {
     id = 0
+    firstConnect = true
     const data = {
         state: 'loader',
         speech: 'l\'application qui vous permet de rejoindre un live sportif commenté par un tiers, ou de devenir vous-même commentateur. Que souhaitez-vous faire ?'
@@ -79,14 +81,17 @@ const streamList = [
 
 
 app.get('/stream', (req, res) => {
+    let speech = firstConnect ? `L'épreuve en cours le 100M hommes. Choisissez un streamer parmi : ${streamList[id][0].name}, ${streamList[id][1].name}, ou ${streamList[id][2].name}`
+                    : `Choisissez un streamer parmi : ${streamList[id][0].name}, ${streamList[id][1].name}, ou ${streamList[id][2].name}`
     const data = {
         state: 'home',
         data: {
             streamers: streamList[id],
             id
         },
-        speech: `Choisissez un streamer parmi : ${streamList[id][0].name}, ${streamList[id][1].name}, ou ${streamList[id][2].name}`
+        speech
     }
+    firstConnect = false
     io.emit('event', data)
     if(id == 2) {
         id = 0
