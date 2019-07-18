@@ -76,8 +76,8 @@ const streamList = [
     ]
 ]
 
-app.get('/stream/:id', (req, res) => {
-    const id = req.params.id
+let id = 0
+app.get('/stream', (req, res) => {
     const data = {
         state: 'home',
         data: {
@@ -87,6 +87,11 @@ app.get('/stream/:id', (req, res) => {
         speech: `Choisissez un streamer parmi : ${streamList[id][0].name}, ${streamList[id][1].name}, ou ${streamList[id][2].name}`
     }
     io.emit('event', data)
+    if(id == 2) {
+        id = 0
+    } else {
+        id++
+    }
     res.json(data)
 })
 
