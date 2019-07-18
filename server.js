@@ -115,12 +115,12 @@ app.get('/media/actions/:action', (req, res) => {
 
 app.get('/media/:streamer', (req, res) => {
     const name = req.params.streamer
-    const nameConcat = name.split(' ').join('')
+    const nameConcat = name.trim()
     const data = {
         state: 'video',
         data: {
             name: name,
-            src: `${nameConcat}.jpg`,
+            src: `${nameConcat.toLowerCase()}.jpg`,
             action: 'play'
         },
         speech: `Entendu. Voici le stream de ${name}`
