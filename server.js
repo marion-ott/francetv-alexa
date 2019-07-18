@@ -35,17 +35,12 @@ const streamList = [
             online: true
         },
         {
-            name: 'Norman',
-            src: 'assets/img/norman.jpg',
+            name: 'Mister V',
+            src: 'assets/img/misterv.jpg',
             online: true
         }
     ],
     [
-        {
-            name: 'Mister V',
-            src: 'assets/img/misterv.jpg',
-            online: true
-        },
         {
             name: 'Squeezie',
             src: 'assets/img/squeezie.jpg',
@@ -54,6 +49,11 @@ const streamList = [
         {
             name: 'Natoo',
             src: 'assets/img/natoo.jpg',
+            online: true
+        },
+        {
+            name: 'Norman',
+            src: 'assets/img/norman.jpg',
             online: true
         }
     ],
@@ -115,11 +115,12 @@ app.get('/media/actions/:action', (req, res) => {
 
 app.get('/media/:streamer', (req, res) => {
     const name = req.params.streamer
+    const nameConcat = name.split(' ').join('')
     const data = {
         state: 'video',
         data: {
             name: name,
-            src: `${name}.png`,
+            src: `${nameConcat}.jpg`,
             action: 'play'
         },
         speech: `Entendu. Voici le stream de ${name}`
