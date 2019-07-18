@@ -134,7 +134,7 @@ app.get('/media/:streamer', (req, res) => {
             src: `${nameConcat.toLowerCase()}.jpg`,
             action: 'play'
         },
-        speech: `Entendu. Voici le stream de ${name}`
+        speech: `D'accord. Voici le stream de ${name}`
     }
     io.emit('event', data)
     res.json(data)
@@ -147,7 +147,7 @@ app.get('/media/:streamer/:action', (req, res) => {
         state: 'video',
         action: action,
         data: 'video.mp4',
-        speech: `Entendu. Voici le stream de ${name}`
+        speech: `D'accord. Voici le stream de ${name}`
     }
     io.emit('event', data)
     res.json(data)
