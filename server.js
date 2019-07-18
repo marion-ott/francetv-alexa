@@ -36,41 +36,41 @@ const streamList = [
         },
         {
             name: 'Norman',
-            src: 'assets/img/norman.png',
+            src: 'assets/img/norman.jpg',
             online: true
         }
     ],
     [
         {
-            name: 'Cyprien',
-            src: 'assets/img/cyprien.jpg',
+            name: 'Mister V',
+            src: 'assets/img/misterv.jpg',
             online: true
         },
         {
-            name: 'Luciole',
-            src: 'assets/img/luciole.jpg',
+            name: 'Squeezie',
+            src: 'assets/img/squeezie.jpg',
             online: true
         },
         {
-            name: 'Norman',
-            src: 'assets/img/norman.png',
+            name: 'Natoo',
+            src: 'assets/img/natoo.jpg',
             online: true
         }
     ],
     [
         {
-            name: 'Norman',
-            src: 'assets/img/norman.png',
+            name: 'Seb La Frite',
+            src: 'assets/img/seb.jpg',
             online: true
         },
         {
-            name: 'Cyprien',
-            src: 'assets/img/cyprien.jpg',
+            name: 'Tibo In Shape',
+            src: 'assets/img/tibo.jpg',
             online: true
         },
         {
-            name: 'Luciole',
-            src: 'assets/img/luciole.jpg',
+            name: 'Hugo Tout Seul',
+            src: 'assets/img/hugo.jpg',
             online: true
         }
     ]
@@ -93,7 +93,7 @@ app.get('/stream/:id', (req, res) => {
 app.get('/media/actions/:action', (req, res) => {
     const name = req.params.action
     let state = 'action'
-    if (name === 'repars' || name === 'continue' || name === 'remets' || name === 'reprends' || name === 'joue' || name === 'jouer' || name === 'play') {
+    if (name === 'repars' || name === 'continue' || name === 'remets' || name === 'reprends' || name === 'joue' || name === 'jouer' || name === 'play' || name === 'lecture') {
         action = 'play'
     } else if (name === 'arrête' || name === 'pause') {
         action = 'pause'
