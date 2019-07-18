@@ -16,7 +16,7 @@ const io = socketIo(server)
 app.get('/', (req, res) => {
     const data = {
         state: 'loader',
-        speech: 'Cette application vous permet de rejoindre un live sportif commenté par un tiers, ou de vous glisser vous-même dans la peau d\'un commentateur.'
+        speech: 'l\'application qui vous permet de rejoindre un live sportif commenté par un tiers, ou de devenir vous-même commentateur. Que souhaitez-vous faire ?'
     }
     io.emit('event', data)
     res.json(data)
