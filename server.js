@@ -83,7 +83,7 @@ app.get('/stream/:id', (req, res) => {
     const data = {
         state: 'streamList',
         data: streamList[id],
-        speech: `Choisissez un streamer parmi : ${streamList[id][0].name}, ${streamList[id][1].name}, ou ${streamList[id][2].name}`
+        speech: `Choisis un streamer parmi : ${streamList[id][0].name}, ${streamList[id][1].name}, ou ${streamList[id][2].name}`
     }
     io.emit('event', data)
     res.json(data)
@@ -93,7 +93,39 @@ app.get('/stream/:id', (req, res) => {
 app.get('/media/:streamer', (req, res) => {
     const name = req.params.streamer
     const data = {
-        state: 'streamList',
+        state: 'video',
+        data: 'video.mp4',
+        speech: `Entendu. Voici le stream de ${name}`
+    }
+    io.emit('event', data)
+    res.json(data)
+})
+
+app.get('/media/:streamer/:action', (req, res) => {
+    const name = req.params.streamer
+    const action = req.params.action
+    const data = {
+        state: 'video',
+        action: action,
+        data: 'video.mp4',
+        speech: `Entendu. Voici le stream de ${name}`
+    }
+    io.emit('event', data)
+    res.json(data)
+})
+
+app.get('/search/:streamer', (req, res) => {
+    const name = req.params.streamer
+    let result = streamList.find(obj => {
+        return obj.name.toLowerCase() === name.toLowerCase()
+    })
+
+    if(result.online) {
+        console.log(result);
+    }
+    
+    const data = {
+        state: 'video',
         data: 'video.mp4',
         speech: `Entendu. Voici le stream de ${name}`
     }
