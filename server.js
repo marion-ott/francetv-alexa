@@ -81,7 +81,7 @@ const streamList = [
 
 
 app.get('/stream', (req, res) => {
-    let speech = firstConnect ? `L'épreuve en cours est le 100M hommes en athlétisme. Choisissez un streamer parmi : ${streamList[id][0].name}, ${streamList[id][1].name}, ou ${streamList[id][2].name}`
+    let speech = firstConnect ? `L'épreuve en cours est le 100 mètres hommes en athlétisme. Choisissez un streamer parmi : ${streamList[id][0].name}, ${streamList[id][1].name}, ou ${streamList[id][2].name}`
                     : `Choisissez un streamer parmi : ${streamList[id][0].name}, ${streamList[id][1].name}, ou ${streamList[id][2].name}`
     const data = {
         state: 'home',
